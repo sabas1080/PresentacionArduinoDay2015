@@ -42,7 +42,7 @@
 			<div class="slides">
 				<section>
 					<h1>ESP8266</h1>
-					<h3>El Internet de las Cosas a bajo Costo</h3>
+					<h3>DIY el Internet de las Cosas</h3>
 					<p>
 						<small>Created by <a href="http://theinventorhouse.org">Andres Sabas</a> / <a href="http://twitter.com/sabasacustico">@sabasacustico</a></small>
 					</p>
@@ -101,11 +101,11 @@
 							<img width="341" height="378" data-src="img/module_v2.png" alt="Down arrow">
 						</a>
 					</section>
-					
+
 					<section>
 					<img width="641" height="450" data-src="img/zener.jpg">
 					</section>
-					
+
 					<section>
 						<h2>ESP-03</h2>
 						<p>Mas GPIO Disponibles.</p>
@@ -116,8 +116,27 @@
 						<p>Con Certificacion FCC.</p>
 						<br>
 						<a href="#/2">
-							<img width="348" height="378" data-src="img/esp-12.jpg" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
+							<img width="348" height="378" data-src="img/esp-12.jpg" alt="Up arrow">
 						</a>
+					</section>
+					<section>
+						<h2>HUZZAH ESP8266</h2>
+						<p>Por Adafruit</p>
+						<br>
+						<a href="#/2">
+							<img width="348" height="378" data-src="img/huzzah.jpg" alt="Up arrow">
+						</a>
+					</section>
+
+					<section>
+							<img width="600" height="450" data-src="img/Logomakerlab.png" alt="Up arrow">
+					</section>
+
+					<section>
+						<h2>ESPino</h2>
+						<p>by MakerLab</p>
+							<img width="300" height="350" data-src="img/ESPinologo.png">
+							<img width="348" height="378" data-src="img/ESPinoRL.jpg" alt="Up arrow">
 					</section>
 				</section>
 
@@ -148,10 +167,10 @@
 						AT: Comandos predefinidos con los que podemos controlar el modulo via serial.
 					</p>
 					<p>
-						Compilado: SDK 
+						Compilado: SDK
 					</p>
 					<p>
-						Perzonalizado: LUA, Frankensteinn y otros 
+						Otros: IDE de Arduino, MicroPython, LUA, Frankensteinn y otros
 					</p>
 
 				</section>
@@ -159,20 +178,28 @@
 				<section>
 					<img width="641" height="450" data-src="img/admiral.jpg">
 				</section>
-				
+
 				<section>
 					<h2>Hardware</h2>
 					<p>
 						ESP8266.
 					</p>
 					<p>
-						Convertidor USB-Serial FTDI 
+						Convertidor USB-Serial FTDI
 					</p>
 					<p>
-						Arduino 
+						Arduino
 					</p>
 					<p>
 						 Fuente de 3.3v
+					</p>
+				</section>
+
+				<section>
+					<h2>GPI0 ESPino</h2>
+					<img width="261" height="450" data-src="img/ESPino.png" >
+					<p>
+						<small>Documento GPIO's <a href="file:///home/electronica/Descargas/ESPino-Pinout-ES.pdf">ESPino</a></small>
 					</p>
 				</section>
 
@@ -464,6 +491,127 @@ tmr.alarm(0, 10000, 1, function() checkap() end )
 					</code></pre>
 				</section>
 
+				<section>
+					<h2>Arduino IDE para ESP8266</h2>
+					<img width="601" height="550" data-src="img/arduino.jpg">
+				</section>
+
+				<section>
+					<h2>Preparacion</h2>
+					<img width="541" height="550" data-src="img/arduino1.jpg">
+				</section>
+
+				<section>
+					<img width="541" height="550" data-src="img/arduino2.jpg">
+				</section>
+
+				<section>
+					<img width="541" height="550" data-src="img/arduino3.jpg">
+				</section>
+
+				<section>
+					<img width="541" height="550" data-src="img/arduino4.jpg">
+				</section>
+
+				<section>
+					<h2>GPI0 Map</h2>
+					<img width="641" height="550" data-src="img/esp12.svg">
+				</section>
+
+				<section>
+					<img width="441" height="550" data-src="img/mocha.jpg">
+				</section>
+
+				<section>
+					<h2>Codigo ejemplo en IDE de Arduino </h2>
+					<pre><code data-trim contenteditable>
+
+#include "ESP8266WiFi.h"
+
+void setup() {
+	Serial.begin(115200);
+
+		// Set WiFi to station mode and disconnect from an AP if it was previously connected
+		WiFi.mode(WIFI_STA);
+		WiFi.disconnect();
+		delay(100);
+
+		Serial.println("Setup done");
+		}
+
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Codigo ejemplo en IDE de Arduino </h2>
+					<pre><code data-trim contenteditable>
+
+void loop() {
+	Serial.println("scan start");
+
+// WiFi.scanNetworks will return the number of networks found
+	int n = WiFi.scanNetworks();
+	Serial.println("scan done");
+	if (n == 0)
+		Serial.println("no networks found");
+	else
+	{
+		Serial.print(n);
+		Serial.println(" networks found");
+		for (int i = 0; i < n; ++i)
+		{
+// Print SSID and RSSI for each network found
+		Serial.print(i + 1);
+		Serial.print(": ");
+		Serial.print(WiFi.SSID(i));
+		Serial.print(" (");
+		Serial.print(WiFi.RSSI(i));
+		Serial.print(")");
+		Serial.println((WiFi.encryptionType(i) == ENC_TYPE_NONE)?" ":"*");
+		delay(10);
+	}
+}
+Serial.println("");
+
+// Wait a bit before scanning again
+delay(5000);
+}
+
+					</code></pre>
+				</section>
+				<section style="text-align: left;">
+					<h1>Projectos</h1>
+					<img width="641" height="450" data-src="img/gatonegocio.jpg">
+				</section>
+				<section style="text-align: left;">
+					<h1>Netflix</h1>
+					<video width="820" height="440" controls>
+  <source src="img/Netflix.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+				</section>
+
+				<section style="text-align: left;">
+					<h1>Conteo de personas</h1>
+					<video width="820" height="440" controls>
+  <source src="img/Solución.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+				</section>
+
+				<section style="text-align: left;">
+					<h1>Uber</h1>
+					<video width="820" height="440" controls>
+	  <source src="img/uber.mp4" type="video/mp4">
+	  <source src="movie.ogg" type="video/ogg">
+	Your browser does not support the video tag.
+	</video>
+				</section>
+				<section style="text-align: left;">
+					<h1>Clima</h1>
+					<img width="641" height="450" data-src="img/weather_Weather_Station_GIF.gif">
+				</section>
+
 				<section style="text-align: left;">
 					<h1>DEMO</h1>
 					<img width="641" height="450" data-src="img/gatonegocio.jpg">
@@ -473,6 +621,34 @@ tmr.alarm(0, 10000, 1, function() checkap() end )
 					<img width="641" height="450" data-src="img/zouzouille.jpg">
 				</section>
 
+				<section>
+					<h2>The Inventor's House</h2>
+					<p> Hackerspace</p>
+					<p>Comunidad, impresion 3D, Electronica, Drones, programación...</p>
+					<img width="350" height="350" data-src="img/TIH.png">
+				</section>
+
+				<section>
+					<h2>The Inventor's House</h2>
+					<p>Estaño #227, La Fundición, atras del antiguo horno de fundición</p>
+					<p>Telefono 915-61-62</p>
+					<p>theinventorhouse.org</p>
+				</section>
+
+				<section>
+					<img width="350" height="250" data-src="img/Logomakerlab.png">
+					<p>I.C. José Ramón Bracamonte Barahona
+					Makerlab Ingeniería e Innovación S.A.P.I. de C.V.</p>
+					<p>
+						jrbracamonte@makerlab.mx
+						www.makerlab.mx
+						www.aquila.io
+						Celular: 9992358034 </p>
+				</section>
+
+				<section>
+					<img width="600" height="450" data-src="img/aquila.png">
+				</section>
 
 				<section>
 					<h2>Bibliografia</h2>
@@ -482,9 +658,9 @@ tmr.alarm(0, 10000, 1, function() checkap() end )
 						<li><a href="http://esp8266.ru/esplorer/">ESPlorer</a></li>
 						<li><a href="https://github.com/esp8266/esp8266-wiki/wiki">WikiESP8266</a></li>
 						<li><a href="http://blog.theinventorhouse.org">Tutoriales TIH ESP8266</a></li>
+						<li><a href="https://github.com/esp8266/Arduino">Arduino IDE for ESP8266</a></li>
 					</ul>
 				</section>
-
 
 				<section>
 					<img width="600" height="450" data-src="img/mollycat.jpg">
